@@ -35,6 +35,7 @@ def handle_excel(update, context):
     # Get the file from the update
 
     file = context.bot.get_file(update.message.document.file_id)
+
     # Download the file
     file.download('file.xlsx')
 
@@ -42,8 +43,10 @@ def handle_excel(update, context):
     COLUMN_B = 'B'
     COLUMN_C = 'C'
 
-    def count_row(max_row, count=0):
-        print("попали сюда")
+    def ROW_COUNT(max_row, count=0):
+
+        print('[INFO] CHECK UPDATE')
+
         for row in range(1, max_row + 1):
             cell_value = sheet[COLUMN_A + str(row)].value
             if cell_value is not None:
@@ -67,7 +70,7 @@ def handle_excel(update, context):
     workbook = openpyxl.load_workbook('file.xlsx')
     sheet = workbook.active
     max_row = sheet.max_row
-    count_row(max_row)
+    ROW_COUNT(max_row)
 
 updater = Updater('6675800876:AAGStcXCPcKrftN5naYNaTkK515sKSwfjL4', use_context=True)
 dispatcher = updater.dispatcher
