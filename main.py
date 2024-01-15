@@ -52,10 +52,10 @@ def handle_excel(update, context):
             if cell_value is not None:
                 count += 1
         count -= 1
-        print("Количество ячеек в столбце A: " + str(count))
-        nextFormula(count)
+        print("COUNT ROW IN A CELL: " + str(count))
+        SET_FORMULA(count)
 
-    def nextFormula(count_max):
+    def SET_FORMULA(count_max):
         start_row = 2
         end_row = count_max + 1
         sheet['C1'] = "Link"
@@ -63,15 +63,17 @@ def handle_excel(update, context):
             cell = 'C{}'.format(row)
             formula = '="{}" &  A{}'.format(get_val(),row)
             sheet[cell].value = formula
-        workbook.save('file_updated.xlsx')
+        WORKBOOK.save('file_updated.xlsx')
         context.bot.send_document(chat_id=update.message.chat_id, document=open('file_updated.xlsx', 'rb'))
 
     # Open the Excel file
-    workbook = openpyxl.load_workbook('file.xlsx')
-    sheet = workbook.active
-    max_row = sheet.max_row
-    ROW_COUNT(max_row)
+    WORKBOOK = openpyxl.load_workbook('file.xlsx')
+    sheet = WORKBOOK.active
+    MAX_USE_ROW = sheet.max_row
+    ROW_COUNT(MAX_USE_ROW)
 
+
+# SETTINGS TELEGRAM BOT AND USING FUNCTION BOT
 updater = Updater('6675800876:AAGStcXCPcKrftN5naYNaTkK515sKSwfjL4', use_context=True)
 dispatcher = updater.dispatcher
 dispatcher.add_handler(MessageHandler(Filters.document, handle_excel))
