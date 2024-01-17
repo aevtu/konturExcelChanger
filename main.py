@@ -12,7 +12,7 @@ def set_val(stv):
 def get_val():
     print("получ", text)
     return text
-
+# еще раз создаем новый комментарий
 # Обработчик команды /start
 def start(update, context):
     user = update.message.from_user
