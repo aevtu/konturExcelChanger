@@ -3,7 +3,7 @@ from telegram.ext import Updater, MessageHandler, Filters, CommandHandler
 import openpyxl
 
 text = ""
-
+# новые изменения, добавление новой строки, новая строка
 def set_val(stv):
     global text
     print("получили ", stv)
